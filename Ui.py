@@ -2,6 +2,7 @@ import requests
 from bs4 import BeautifulSoup
 import tkinter as tk
 from tkinter import messagebox
+from tkinter import ttk
 
 def fetch_amazon_details():
     url = amazon_url_entry.get()
@@ -52,33 +53,44 @@ def fetch_flipkart_details():
 # Create the main window
 root = tk.Tk()
 root.title("Product Details Fetcher")
+root.geometry("600x400")
+
+# Apply some styles
+style = ttk.Style()
+style.configure("TLabel", font=("Helvetica", 12), padding=10)
+style.configure("TEntry", font=("Helvetica", 12), padding=10)
+style.configure("TButton", font=("Helvetica", 12), padding=10)
+style.configure("TFrame", background="#f5f5f5")
+
+main_frame = ttk.Frame(root, style="TFrame")
+main_frame.pack(fill="both", expand=True)
 
 # Amazon URL input
-amazon_url_label = tk.Label(root, text="Enter the Amazon Product link:")
-amazon_url_label.pack(pady=5)
-amazon_url_entry = tk.Entry(root, width=50)
+amazon_url_label = ttk.Label(main_frame, text="Enter the Amazon Product link:")
+amazon_url_label.pack(pady=10)
+amazon_url_entry = ttk.Entry(main_frame, width=50)
 amazon_url_entry.pack(pady=5)
-fetch_amazon_button = tk.Button(root, text="Fetch Amazon Details", command=fetch_amazon_details)
-fetch_amazon_button.pack(pady=5)
+fetch_amazon_button = ttk.Button(main_frame, text="Fetch Amazon Details", command=fetch_amazon_details)
+fetch_amazon_button.pack(pady=10)
 
 # Amazon product details
-amazon_title_label = tk.Label(root, text="Title: ")
+amazon_title_label = ttk.Label(main_frame, text="Title: ")
 amazon_title_label.pack(pady=5)
-amazon_price_label = tk.Label(root, text="Price: ")
+amazon_price_label = ttk.Label(main_frame, text="Price: ")
 amazon_price_label.pack(pady=5)
 
 # Flipkart URL input
-flipkart_url_label = tk.Label(root, text="Enter the Flipkart Product link:")
-flipkart_url_label.pack(pady=5)
-flipkart_url_entry = tk.Entry(root, width=50)
+flipkart_url_label = ttk.Label(main_frame, text="Enter the Flipkart Product link:")
+flipkart_url_label.pack(pady=10)
+flipkart_url_entry = ttk.Entry(main_frame, width=50)
 flipkart_url_entry.pack(pady=5)
-fetch_flipkart_button = tk.Button(root, text="Fetch Flipkart Details", command=fetch_flipkart_details)
-fetch_flipkart_button.pack(pady=5)
+fetch_flipkart_button = ttk.Button(main_frame, text="Fetch Flipkart Details", command=fetch_flipkart_details)
+fetch_flipkart_button.pack(pady=10)
 
 # Flipkart product details
-flipkart_title_label = tk.Label(root, text="Title: ")
+flipkart_title_label = ttk.Label(main_frame, text="Title: ")
 flipkart_title_label.pack(pady=5)
-flipkart_price_label = tk.Label(root, text="Price: ")
+flipkart_price_label = ttk.Label(main_frame, text="Price: ")
 flipkart_price_label.pack(pady=5)
 
 # Run the main loop
